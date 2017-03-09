@@ -1,0 +1,85 @@
+@font-face {
+	font-family: 'Calibre';
+	src: url('Calibre-Medium.eot');
+	src: url('Calibre-Medium.eot?#iefix') format('embedded-opentype'),
+		url('Calibre-Medium.woff') format('woff'),
+		url('Calibre-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Calibre';
+	src: url('Calibre-Bold.eot');
+	src: url('Calibre-Bold.eot?#iefix') format('embedded-opentype'),
+		url('Calibre-Bold.woff') format('woff'),
+		url('Calibre-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Calibre';
+	src: url('Calibre-Regular.eot');
+	src: url('Calibre-Regular.eot?#iefix') format('embedded-opentype'),
+		url('Calibre-Regular.woff') format('woff'),
+		url('Calibre-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+
+html, body, .main { height: 100%; margin: 0; }
+
+body {
+  background: url('pat.png') repeat;
+  color: white;
+  background-color: darkgrey;
+  font-family: 'Calibre';
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.textarea {
+  background-color: rgba(black, 0.4);
+  border: 4px solid lightgrey;
+  padding: 1em;
+  width: 500px;
+  height: 250px;
+  color: grey;
+  line-height: 1.8;
+
+  strong { color: white; }
+
+  &:first-letter { text-transform: uppercase; }
+}
+
+.btn, .btn--reload {
+  padding: 0.4em 0.8em 0.2em;
+  border: none;
+  border-radius: 1em;
+  margin: 0;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: grey;
+  color: white;
+  cursor: pointer;
+
+  &:hover { background-color: lightgrey; }
+
+  & + & {
+    margin-left: 0.2em;
+  }
+}
+
+.btn--reload {
+  margin-top: 1em;
+}
