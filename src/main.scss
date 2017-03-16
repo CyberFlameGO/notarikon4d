@@ -56,27 +56,30 @@ body {
   height: 250px;
   color: grey;
   line-height: 1.8;
+  outline: none;
 
-  strong { color: white; }
-
-  &:first-letter { text-transform: uppercase; }
+  strong { color: white; font-weight: 500; }
 }
 
 .btn, .btn--reload {
-  padding: 0.4em 0.8em 0.2em;
+  padding: 0.6em 0.8em 0.4em;
   border: none;
-  border-radius: 1em;
   margin: 0;
   font-family: inherit;
-  font-size: 1rem;
-  background-color: grey;
-  color: white;
+  font-size: 1.1rem;
+  background-color: white;
+  color: black;
   cursor: pointer;
 
-  &:hover { background-color: lightgrey; }
+  &:hover, &.has-been-used { background-color: lightgrey; }
 
   & + & {
     margin-left: 0.2em;
+  }
+
+  &.has-been-used {
+    pointer-events: none;
+    opacity: 0.6;
   }
 }
 

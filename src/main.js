@@ -1,16 +1,35 @@
 import 'babel-polyfill';
 import './main.scss';
+import * as h from './helpers';
+
+const dif = h.getUrlParameter('difficulty') ? parseInt(h.getUrlParameter('difficulty'), 10) : 1;
 
 const nbsp = '\xa0';
-const typeSpeed = 50;
-const numberOfButtons = 4;
 
-const words = [
-  'glass',
-  'car',
-  'cat',
-  'xeroradiography',
-];
+const typeSpeed = 50;
+
+const words = {
+  1: [
+    'bob',
+    'car',
+    'I',
+    'today',
+  ],
+  2: [
+    'story',
+    'sandwich',
+    'hospital',
+    'television',
+  ],
+  3: [
+    'running',
+    'zimbabwe',
+    'salmon',
+    'functional programming',
+  ],
+};
+
+const numberOfButtons = words[dif].length;
 
 const textarea = document.querySelector('.textarea');
 const aside = document.querySelector('.aside');
@@ -19,27 +38,6 @@ let flag = false;
 
 textarea.onkeypress = (e) => {
   if (flag) e.preventDefault();
-}
-
-function rando(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function newBtn() {
-  const btn = document.createElement('button');
-  btn.classList.add('btn');
-  btn.innerHTML = rando(words);
-
-  btns.appendChild(btn);
-}
-
-function newSpace() {
-  return new Promise((resolve) => {
-    const space = document.createElement('span');
-    space.textContent = nbsp;
-    textarea.appendChild(space);
-    resolve();
-  });
 }
 
 function newWord(letters) {
@@ -57,14 +55,14 @@ function newWord(letters) {
       if (i === letters.length) {
         clearInterval(letterTimer);
         flag = false;
-        newSpace().then(() => resolve());
+        h.newSpace(textarea).then(() => resolve());
       }
     }, typeSpeed);
   })
 }
 
 for (let i = 0; i < numberOfButtons; i++) {
-  newBtn();
+  h.newBtn(h.rando(words[dif]), btns);
 }
 
 function placeCaretAtEnd(el, start = false) {
@@ -87,5 +85,18 @@ function placeCaretAtEnd(el, start = false) {
 
 document.querySelectorAll('.btn').forEach(btn => btn.onclick = async () => {
   const letters = btn.textContent.split('');
-  newWord(letters).then(() => placeCaretAtEnd(textarea));
+  const inner = textarea.innerHTML;
+
+  let l = letters;
+  if (!inner.endsWith('<span>&nbsp;</span>') && !inner.endsWith('&nbsp;')) {
+    l = [nbsp, ...letters];
+  }
+
+  newWord(l).then(() => {
+    placeCaretAtEnd(textarea);
+    console.log(textarea.innerHTML);
+    if (textarea.innerHTML.includes(`${btn.textContent}</strong>`)) {
+      btn.classList.add('has-been-used');
+    }
+  });
 });
