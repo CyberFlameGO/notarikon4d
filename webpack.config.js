@@ -43,6 +43,9 @@ module.exports = {
     }, {
       test: /\.(eot|svg|ttf|woff|otf?)$/,
       loader: 'file-loader?name=fonts/[name].[ext]',
+    }, {
+      test: /favicon\.png/,
+      loader: 'file-loader?name=[name].[ext]',
     }],
   },
 };
