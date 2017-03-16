@@ -3,6 +3,7 @@ import './main.scss';
 import * as h from './helpers';
 
 const dif = h.getUrlParameter('difficulty') ? parseInt(h.getUrlParameter('difficulty'), 10) : 1;
+document.querySelector(`.difficulty__link[data-difficulty="${dif}"]`).classList.add('is-active');
 
 const nbsp = '\xa0';
 
@@ -26,6 +27,21 @@ const words = {
     'zimbabwe',
     'salmon',
     'functional programming',
+  ],
+  4: [
+    'elephant',
+    'coroner',
+    'presidential campaign',
+    'yodeling',
+  ],
+  5: [
+    'aliens',
+    'potatoes',
+    'gentrification',
+    'music',
+    'Jay-Z',
+    'notarikon',
+    'cliffhanger',
   ],
 };
 
@@ -61,8 +77,8 @@ function newWord(letters) {
   })
 }
 
-for (let i = 0; i < numberOfButtons; i++) {
-  h.newBtn(h.rando(words[dif]), btns);
+for (let i = 0; i < words[dif].length; i++) {
+  h.newBtn(words[dif][i], btns);
 }
 
 function placeCaretAtEnd(el, start = false) {
@@ -84,6 +100,7 @@ function placeCaretAtEnd(el, start = false) {
 }
 
 document.querySelectorAll('.btn').forEach(btn => btn.onclick = async () => {
+  if (flag) return;
   const letters = btn.textContent.split('');
   const inner = textarea.innerHTML;
 
