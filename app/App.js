@@ -13,6 +13,10 @@ export default class App extends Component {
     this.setDifficulty = this.setDifficulty.bind(this);
   }
 
+  componentDidMount() {
+    this.editor.focus();
+  }
+
   onChange(editorState) {
     const { difficulty: dif } = this.state;
     const contentState = editorState.getCurrentContent();
