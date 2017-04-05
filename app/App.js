@@ -23,7 +23,7 @@ export default class App extends Component {
     const text = contentState.getPlainText();
 
     const newWords = c.words[dif].map(((w) => {
-      const re = new RegExp(`\\b${w}\\b`, 'g');
+      const re = new RegExp(`\\b${w}\\b`, 'gi');
       if (text.search(re) > -1) return w;
       return undefined;
     }));
