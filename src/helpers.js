@@ -27,3 +27,21 @@ export function newSpace(textarea) {
     resolve();
   });
 }
+
+export function placeCaretAtEnd(el, start = false) {
+  let range;
+  let selection;
+  if(document.createRange) {
+    range = document.createRange();
+    range.selectNodeContents(el);
+    range.collapse(start);
+    selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  } else if(document.selection) { 
+    range = document.body.createTextRange();
+    range.moveToElementText(el);
+    range.collapse(start);
+    range.select();
+  }
+}
