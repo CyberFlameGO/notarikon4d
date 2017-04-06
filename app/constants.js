@@ -35,7 +35,7 @@ const constants = {
       'notarikon',
       'cliffhanger',
     ],
-  }
+  },
 };
 
 export default constants;
