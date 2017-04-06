@@ -100,13 +100,12 @@ export default class App extends Component {
   }
 
   render() {
-    const { difficulty: dif, words, hasWon } = this.state;
+    const { difficulty: dif, words } = this.state;
     const hasWord = w => words.indexOf(w) > -1;
     const difs = [1, 2, 3, 4, 5];
 
     return (
       <main className="main">
-        {hasWon && <h1>You win!</h1>}
         <aside className="aside">
           <h1>Notarikon</h1>
           <div className="aside__btns">
