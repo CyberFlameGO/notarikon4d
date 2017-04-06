@@ -55,7 +55,9 @@ export default class App extends Component {
   }
 
   setDifficulty(difficulty) {
-    this.setState({ difficulty, editorState: EditorState.createEmpty(), words: [] });
+    this.setState({ difficulty, editorState: EditorState.createEmpty(), words: [] }, () => {
+      this.editor.focus();
+    });
   }
 
   addSpace() {
