@@ -49,6 +49,73 @@ h1 {
     margin: 0 auto;
 }
 
+.modal {
+    &-wrapper {
+        position: absolute;
+        z-index: 99;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    position: absolute;
+    z-index: 99;
+    top: 50%;
+    left: 50%;
+    padding: 2em;
+    background-color: rgba(white, 0.9);
+    color: black;
+    text-align: center;
+    transform: translate(-50%, -50%);
+
+    h2 { margin-top: 0; }
+
+    &__close {
+        position: absolute;
+        top: 1em;
+        right: -2.5em;
+        padding: 0;
+        border: none;
+        margin: 0;
+        background: none;
+        color: white;
+        cursor: pointer;
+        transform: rotate(90deg);
+
+        &:hover { color: darken(white, 10%); }
+    }
+
+    &__btn {
+        padding: 1em 1em 0.8em;
+        border: none;
+        margin: 0 0 0 1em;
+        background: black;
+        color: white;
+        cursor: pointer;
+        transition:
+            background-color 150ms $standard,
+            color 150ms $standard,
+            box-shadow 150ms $standard;
+
+        &:hover {
+            background-color: white;
+            color: black;
+            box-shadow: 0 2px 4px rgba(black, 0.1);
+        }
+    }
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0.5;
+    }
+}
+
 .DraftEditor-root {
     width: 500px;
     height: 250px;
@@ -66,6 +133,10 @@ h1 {
     height: 100%;
 }
 
+button {
+    font-family: inherit;
+}
+
 .btn {
     padding: 0.6em 0.8em 0.4em;
     border: none;
@@ -74,7 +145,6 @@ h1 {
     margin-top: 0.4em;
     background-color: white;
     color: black;
-    font-family: inherit;
     font-size: 1.1rem;
     cursor: pointer;
 
@@ -116,6 +186,10 @@ h1 {
 
         &.is-active, &:hover {
             background-color: white;
+        }
+
+        &.has-won {
+            background-color: goldenrod;
         }
     }
 }
