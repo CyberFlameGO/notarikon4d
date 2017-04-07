@@ -3,7 +3,6 @@ import { OrderedSet } from 'immutable';
 import classnames from 'classnames';
 import { Editor, EditorState, Modifier, RichUtils } from 'draft-js';
 import c from './constants';
-import h from './helpers';
 import Modal from './Modal';
 import Firework from './Firework';
 
@@ -173,14 +172,14 @@ export default class App extends Component {
         </section>
 
         {hasWon.every(v => v) && <div className="fireworks">
-          <Firework fill={h.getRandomColor()} />
-          <Firework fill={h.getRandomColor()} />
-          <Firework fill={h.getRandomColor()} />
-          <Firework fill={h.getRandomColor()} />
-          <Firework fill={h.getRandomColor()} />
-          <Firework fill={h.getRandomColor()} />
-          <Firework fill={h.getRandomColor()} />
-          <Firework fill={h.getRandomColor()} />
+          <Firework />
+          <Firework />
+          <Firework />
+          <Firework />
+          <Firework />
+          <Firework />
+          <Firework />
+          <Firework />
         </div>}
       </main>
     );

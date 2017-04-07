@@ -1,9 +1,14 @@
 import React, { Component, PropTypes } from 'react';
+import h from './helpers';
 import './fireworks.scss';
 
 export default class Firework extends Component {
   static propTypes = {
-    fill: PropTypes.string.isRequired,
+    fill: PropTypes.string,
+  }
+
+  static defaultProps = {
+    fill: null,
   }
 
   render() {
@@ -11,7 +16,7 @@ export default class Firework extends Component {
     const top = `${Math.floor(Math.random() * 100)}%`;
     const left = `${Math.floor(Math.random() * 100)}%`;
 
-    const style = { top, left, fill };
+    const style = { top, left, fill: fill || h.getRandomColor() };
 
     return (
       <svg xmlns="http://www.w3.org/2000/svg" className="svg" viewBox="0 0 157 156" style={style}>
