@@ -15,9 +15,13 @@ const config = require('../config/webpack.config');
 
 const app = express();
 const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 require('./utils/database');
 require('./utils/passport')(passport);
+
+const graphqlHTTP = require('express-graphql');
+const schema = require('./graphql');
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,6 +35,13 @@ app.use(compression());
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 4000 : process.env.PORT;
+
+app.use('/graphql', graphqlHTTP({
+  schema,
+  pretty: true,
+  graphiql: isDeveloping,
+  rootValue: { io },
+}));
 
 if (isDeveloping) {
   const compiler = webpack(config);
