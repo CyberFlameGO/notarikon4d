@@ -1,8 +1,12 @@
 /* eslint no-console: 0 */
 
 const express = require('express');
-const path = require('path');
+const session = require('cookie-session');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const passport = require('passport');
+const path = require('path');
 
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
@@ -11,6 +15,17 @@ const config = require('../config/webpack.config');
 
 const app = express();
 const http = require('http').Server(app);
+
+require('./utils/database');
+require('./utils/passport')(passport);
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(session({ secret: process.env.SESSION_SECRET }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(compression());
 
